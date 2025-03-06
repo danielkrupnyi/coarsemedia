@@ -1,11 +1,25 @@
 import { cn } from '@/lib/utils';
 import { FC, ReactNode } from 'react';
 
-export const Container: FC<{ children: ReactNode; className?: string }> = ({
+interface ContainerProps {
+	children: ReactNode;
+	className?: string;
+	variant?: 'dashboard';
+}
+
+export const Container: FC<ContainerProps> = ({
 	children,
 	className,
+	variant,
 }) => {
 	return (
-		<div className={cn('max-w-7xl mx-auto p-4', className)}>{children}</div>
+		<div
+			className={cn(
+				variant ? 'pt-6 pb-12 px-6' : 'max-w-7xl mx-auto p-4',
+				className
+			)}
+		>
+			{children}
+		</div>
 	);
 };

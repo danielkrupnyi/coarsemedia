@@ -1,18 +1,20 @@
-import { auth } from '@/auth';
 import { Container } from '@/components/container';
+import { TypingAnimation } from '@/components/magicui/typing-animation';
 
 const DashboardPage = async () => {
-	const session = await auth();
-
-	console.log(session);
-
 	return (
-		<div>
-			<Container>
-				<h1 className='text-2xl font-bold'>DashboardPage</h1>
-				<span>{session?.user?.email}</span>
+		<>
+			<Container
+				variant='dashboard'
+				className='flex justify-center items-center h-full'
+			>
+				<div className='bg-background z-20'>
+					<TypingAnimation as='h1' className='text-2xl'>
+						Hello! Just open any item in the sidebar.
+					</TypingAnimation>
+				</div>
 			</Container>
-		</div>
+		</>
 	);
 };
 

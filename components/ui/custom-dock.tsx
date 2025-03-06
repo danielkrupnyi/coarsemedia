@@ -80,11 +80,13 @@ const DATA = {
 				name: 'GitHub',
 				url: 'https://github.com/danielkrupnyi',
 				icon: Icons.github,
+				targetBlank: true,
 			},
 			email: {
 				name: 'Send Email',
 				url: 'mailto:daniel.krupnyi@gmail.com',
 				icon: Icons.email,
+				targetBlank: false,
 			},
 		},
 	},
@@ -126,6 +128,7 @@ export function DockDemo() {
 								<Link
 									href={social.url}
 									aria-label={social.name}
+									target={social.targetBlank ? '_blank' : undefined}
 									className={cn(
 										buttonVariants({ variant: 'ghost', size: 'icon' }),
 										'size-12 rounded-full'
@@ -144,7 +147,7 @@ export function DockDemo() {
 				<DockIcon>
 					<Tooltip>
 						<TooltipTrigger asChild>
-							<ThemeToggle className='rounded-full' />
+							<ThemeToggle />
 						</TooltipTrigger>
 						<TooltipContent>
 							<p>Theme</p>
