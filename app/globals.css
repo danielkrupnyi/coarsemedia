@@ -125,7 +125,7 @@
 	}
 }
 
-@layer utilities {
+/* @layer utilities {
 	@variants responsive {
 		.masonry-3-col {
 			column-count: 3;
@@ -142,7 +142,7 @@
 			break-inside: avoid;
 		}
 	}
-}
+} */
 
 /* LOGO */
 .cls-1 {
