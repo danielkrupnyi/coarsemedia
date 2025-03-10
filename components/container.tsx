@@ -15,7 +15,7 @@ export const Container: FC<ContainerProps> = ({
 	return (
 		<div
 			className={cn(
-				variant ? 'pt-6 pb-12 px-6' : 'max-w-7xl mx-auto p-4',
+				variant ? 'pt-6 pb-12 px-6' : 'max-w-7xl mx-auto px-4 pt-4 pb-24',
 				className
 			)}
 		>

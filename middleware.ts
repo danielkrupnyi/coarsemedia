@@ -1,6 +1,5 @@
 import { auth } from '@/auth';
-import { NextResponse } from 'next/server';
-import { type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
 	const session = await auth();
@@ -35,7 +34,7 @@ export const config = {
 	matcher: [
 		// Protected routes
 		'/dashboard/:path*',
-		'/projects/:path*',
+		// '/projects/:path*',
 		'/settings/:path*',
 		// Auth routes
 		'/auth/:path*',
