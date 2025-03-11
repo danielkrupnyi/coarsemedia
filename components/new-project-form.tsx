@@ -1,7 +1,5 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import {
 	Form,
 	FormControl,
@@ -11,66 +9,32 @@ import {
 	FormLabel,
 	FormMessage,
 } from './ui/form';
-import { Input } from './ui/input';
 
-import { createProject } from '@/actions';
-import { useRouter } from 'next/navigation';
-import { z } from 'zod';
+import { useProjectForm } from '@/hooks/use-project-form';
+import { Project } from '@/types';
+import { FC } from 'react';
 import { Button } from './ui/button';
 import { Checkbox } from './ui/checkbox';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
 
-const formSchema = z.object({
-	title: z.string().min(2, {
-		message: 'Username must be at least 2 characters.',
-	}),
-	description: z.string().min(20, {
-		message: 'Username must be at least 20 characters.',
-	}),
-	stack: z.string().min(3, {
-		message: 'Username must be at least 3 characters.',
-	}),
-	website: z.string().url().optional().or(z.literal('')),
-	websiteHidden: z.boolean(),
-	github: z.string().url().optional().or(z.literal('')),
-	githubHidden: z.boolean(),
-});
+interface ProjectFormProps {
+	defaultValues?: Project;
+	variant?: 'update';
+}
 
-export const NewProjectForm = () => {
-	const router = useRouter();
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			title: '',
-			description: '',
-			stack: '',
-			website: '',
-			websiteHidden: false,
-			github: '',
-			githubHidden: false,
-		},
+export const NewProjectForm: FC<ProjectFormProps> = ({
+	variant,
+	defaultValues,
+}) => {
+	const { form, handleSubmit, handleDelete } = useProjectForm({
+		defaultValues,
+		variant,
 	});
-
-	async function onSubmit(values: z.infer<typeof formSchema>) {
-		try {
-			const formData = new FormData();
-			Object.entries(values).forEach(([key, value]) => {
-				formData.append(
-					key,
-					typeof value === 'boolean' ? value.toString() : value
-				);
-			});
-
-			await createProject(formData);
-			router.push('/dashboard/content/projects');
-			router.refresh();
-		} catch (error) {
-			console.error('Failed to create project:', error);
-		}
-	}
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+			<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
 				<FormField
 					control={form.control}
 					name='title'
@@ -94,7 +58,7 @@ export const NewProjectForm = () => {
 						<FormItem>
 							<FormLabel>Description</FormLabel>
 							<FormControl>
-								<Input placeholder='Some Description...' {...field} />
+								<Textarea placeholder='Some Description...' {...field} />
 							</FormControl>
 							<FormDescription>
 								This is description of your project.
@@ -191,9 +155,21 @@ export const NewProjectForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='cursor-pointer'>
-					Create Entry
-				</Button>
+				<div className='flex justify-between'>
+					<Button type='submit' className='cursor-pointer'>
+						{variant === 'update' ? 'Update Project' : 'Create Project'}
+					</Button>
+					{variant === 'update' && (
+						<Button
+							onClick={handleDelete}
+							type='button'
+							variant='destructive'
+							className='cursor-pointer'
+						>
+							Delete Project
+						</Button>
+					)}
+				</div>
 			</form>
 		</Form>
 	);

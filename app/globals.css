@@ -125,25 +125,6 @@
 	}
 }
 
-/* @layer utilities {
-	@variants responsive {
-		.masonry-3-col {
-			column-count: 3;
-			column-gap: 1.5rem;
-		}
-		.masonry-2-col {
-			column-count: 2;
-			column-gap: 1.5rem;
-		}
-		.masonry-1-col {
-			column-count: 1;
-		}
-		.break-inside {
-			break-inside: avoid;
-		}
-	}
-} */
-
 /* LOGO */
 .cls-1 {
 	fill: #b1b4c4;

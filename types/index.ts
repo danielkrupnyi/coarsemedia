@@ -10,14 +10,18 @@ export type Post = {
 	cover_image: string;
 };
 
-export type Project = {
-	id: string;
-	userId: number;
-	slug: string;
+export interface Project {
+	id?: string;
+	user_id?: number;
+	slug?: string;
 	title: string;
 	description: string;
-	status: 'published' | 'draft';
-	stack: string[];
-	github_url: string;
-	website_url: string;
-};
+	stack: string[] | [];
+	status: 'draft' | 'published';
+	website_url?: string;
+	github_url?: string;
+	github_hidden: boolean;
+	website_hidden: boolean;
+	created_at?: object;
+	updated_at?: object;
+}

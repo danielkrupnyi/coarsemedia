@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	experimental: {
+		turbo: {},
+	},
 };
 
 export default withPlaiceholder(nextConfig);
