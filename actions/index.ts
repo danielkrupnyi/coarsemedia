@@ -29,22 +29,9 @@ export const getProjectsData = async () => {
 	const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 	try {
-		const result = await pool.query<Project>(`
-      SELECT 
-        id,
-        user_id as "userId",
-        slug,
-        title,
-        description,
-        status,
-        stack,
-        github_url,
-        website_url,
-        created_at,
-        updated_at
-      FROM projects
-      ORDER BY created_at DESC
-    `);
+		const result = await pool.query<Project>(
+			`SELECT * FROM projects ORDER BY created_at DESC`
+		);
 		return result.rows;
 	} catch (error) {
 		console.error('Database query failed:', error);

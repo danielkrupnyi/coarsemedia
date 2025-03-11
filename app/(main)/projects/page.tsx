@@ -1,9 +1,9 @@
-import { getAllProjects } from '@/actions';
+import { getProjectsData } from '@/actions';
 import { Container } from '@/components/container';
 import { ProjectsGrid } from '@/components/projects-grid';
 
 const ProjectsPage = async () => {
-	const projects = await getAllProjects();
+	const projects = await getProjectsData();
 
 	return (
 		<Container>
