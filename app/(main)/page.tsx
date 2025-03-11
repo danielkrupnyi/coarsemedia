@@ -22,7 +22,7 @@ export default function Home() {
 							once
 							className='text-4xl font-bold mb-8'
 						>
-							Hello, I'm Daniel 👋
+							Hello, Im&apos;Daniel 👋
 						</TextAnimate>
 						<TextAnimate
 							animation='blurInUp'
