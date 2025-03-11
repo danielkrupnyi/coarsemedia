@@ -1,5 +1,5 @@
 import { AppSidebar } from '@/components/app-sidebar';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Breadcrumbs } from '@/components/breadcrumbs';
 import Providers from '@/components/progress-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 import {

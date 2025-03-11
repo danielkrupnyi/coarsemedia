@@ -1,6 +1,6 @@
 import { getPosts } from '@/actions';
 import { Container } from '@/components/container';
-import { PostsGrid } from '@/components/PostsGrid';
+import { PostsGrid } from '@/components/posts-grid';
 
 const BlogPage = async () => {
 	const posts = await getPosts();

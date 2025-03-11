@@ -11,14 +11,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import {
-	FileCode,
-	FolderCode,
-	Globe,
-	House,
-	NotebookPen,
-	StickyNote,
-} from 'lucide-react';
+import { FileCode, FolderCode, Globe, House, NotebookPen } from 'lucide-react';
 import Link from 'next/link';
 import { NavUser } from './nav-user';
 import { ThemeToggle } from './ui/theme-toggle';
@@ -29,11 +22,6 @@ const contentItems = [
 		title: 'Projects',
 		url: '/dashboard/content/projects',
 		icon: FileCode,
-	},
-	{
-		title: 'Posts',
-		url: '/dashboard/content/posts',
-		icon: StickyNote,
 	},
 ];
 
