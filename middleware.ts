@@ -5,7 +5,13 @@ export async function middleware(request: NextRequest) {
 	const session = await auth();
 
 	// Public paths that don't require authentication
-	const publicPaths = ['/auth/signin', '/auth/error', '/auth/verify-request'];
+	const publicPaths = [
+		'/auth/signin',
+		'/auth/error',
+		'/auth/verify-request',
+		'/projects',
+		'/blog',
+	];
 
 	const isPublicPath = publicPaths.some(path =>
 		request.nextUrl.pathname.startsWith(path)
@@ -34,9 +40,7 @@ export const config = {
 	matcher: [
 		// Protected routes
 		'/dashboard/:path*',
-		// '/projects/:path*',
 		'/settings/:path*',
-		// Auth routes
 		'/auth/:path*',
 	],
 };
