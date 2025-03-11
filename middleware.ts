@@ -5,25 +5,24 @@ export async function middleware(request: NextRequest) {
 	const session = await auth();
 
 	// Public paths that don't require authentication
-	const publicPaths = [
-		'/auth/signin',
-		'/auth/error',
-		'/auth/verify-request',
-		'/projects',
-		'/blog',
-	];
+	const publicPaths = ['/auth/signin', '/auth/error', '/auth/verify-request'];
 
-	const isPublicPath = publicPaths.some(path =>
+	// Check if current path is an auth path
+	const isAuthPath = publicPaths.some(path =>
 		request.nextUrl.pathname.startsWith(path)
 	);
 
 	// Redirect authenticated users away from auth pages
-	if (isPublicPath && session) {
+	if (isAuthPath && session) {
 		return NextResponse.redirect(new URL('/dashboard', request.url));
 	}
 
 	// Redirect unauthenticated users to signin page
-	if (!isPublicPath && !session) {
+	if (
+		!isAuthPath &&
+		!session &&
+		request.nextUrl.pathname.startsWith('/dashboard')
+	) {
 		const searchParams = new URLSearchParams({
 			callbackUrl: request.nextUrl.pathname,
 		});
