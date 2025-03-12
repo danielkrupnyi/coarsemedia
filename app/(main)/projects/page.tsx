@@ -1,10 +1,10 @@
-import { getProjectsData, getProjectsPageData } from '@/actions';
+import { getProjects, getProjectsPageData } from '@/actions';
 import { Container } from '@/components/container';
 import { ProjectsGrid } from '@/components/projects-grid';
 
 const ProjectsPage = async () => {
 	const pageData = await getProjectsPageData();
-	const projects = await getProjectsData();
+	const projects = await getProjects();
 
 	return (
 		<Container>

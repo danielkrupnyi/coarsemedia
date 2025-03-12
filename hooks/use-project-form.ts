@@ -25,31 +25,21 @@ export const useProjectForm = ({
 			description: '',
 			stack: '',
 			website: '',
-			websiteHidden: false,
 			github: '',
-			githubHidden: false,
 		},
 	});
 
 	useEffect(() => {
 		if (defaultValues && variant === 'update') {
-			const {
-				title,
-				description,
-				stack,
-				website_url,
-				github_url,
-				website_hidden,
-				github_hidden,
-			} = defaultValues;
+			const { title, description, stack, website_url, github_url } =
+				defaultValues;
+
 			form.reset({
 				title,
 				description,
 				stack: Array.isArray(stack) ? stack.join(', ') : stack,
 				website: website_url,
-				websiteHidden: website_hidden,
 				github: github_url,
-				githubHidden: github_hidden,
 			});
 		}
 	}, [defaultValues, form, variant]);
@@ -58,10 +48,7 @@ export const useProjectForm = ({
 		try {
 			const formData = new FormData();
 			Object.entries(values).forEach(([key, value]) => {
-				formData.append(
-					key,
-					typeof value === 'boolean' ? value.toString() : value
-				);
+				formData.append(key, value);
 			});
 
 			if (variant === 'update') {

@@ -1,10 +1,13 @@
-import { BlogPageForm } from '@/components/blog-page-form';
+import { getBlogPageSettings } from '@/actions/dashboard';
 import { Container } from '@/components/container';
+import { BlogPageForm } from '@/components/pages-form/blog-page-form';
 
-const PagesBlogPage = () => {
+const PagesBlogPage = async () => {
+	const pageData = await getBlogPageSettings();
+
 	return (
-		<Container variant='dashboard' className=''>
-			<BlogPageForm />
+		<Container variant='dashboard'>
+			<BlogPageForm pageData={pageData} />
 		</Container>
 	);
 };

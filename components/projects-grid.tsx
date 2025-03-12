@@ -40,30 +40,29 @@ export const ProjectsGrid: FC<ProjectsGridProps> = ({ projects }) => {
 								<CardDescription>{project.description}</CardDescription>
 							</CardHeader>
 							<CardContent className='flex flex-wrap gap-1'>
-								<Badge variant='secondary'>Next.js</Badge>
-								<Badge variant='secondary'>Tailwindcss</Badge>
-								<Badge variant='secondary'>secondary</Badge>
-								<Badge variant='secondary'>secondary</Badge>
+								{project.stack.map(item => (
+									<Badge variant='secondary' key={item}>
+										{item}
+									</Badge>
+								))}
 							</CardContent>
 							<CardFooter className='flex gap-4'>
-								{!project.website_hidden ||
-									(project.website_url && (
-										<Button variant='outline' asChild>
-											<Link href={project.website_url}>
-												<Globe />
-												Website
-											</Link>
-										</Button>
-									))}
-								{!project.github_hidden ||
-									(project.github_url && (
-										<Button asChild>
-											<Link href={project.github_url}>
-												<Github />
-												Github
-											</Link>
-										</Button>
-									))}
+								{project.website_url && (
+									<Button variant='outline' asChild>
+										<Link href={project.website_url || ''} target='_blank'>
+											<Globe />
+											Website
+										</Link>
+									</Button>
+								)}
+								{project.github_url && (
+									<Button variant='outline' asChild>
+										<Link href={project.github_url || ''} target='_blank'>
+											<Github />
+											Github
+										</Link>
+									</Button>
+								)}
 							</CardFooter>
 						</MotionCard>
 					))}

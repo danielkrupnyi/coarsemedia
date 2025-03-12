@@ -10,20 +10,24 @@ export type Post = {
 	cover_image: string;
 };
 
-export type HomePageTypes = {
-	title: string;
-	subtitle: string;
-};
+export interface BlogPageSettings extends BlogPageTypes {
+	display: boolean;
+}
 
-export type BlogPageTypes = {
+export interface HomePageTypes {
 	title: string;
 	subtitle: string;
-};
+}
 
-export type ProjectsPageTypes = {
+export interface BlogPageTypes {
 	title: string;
 	subtitle: string;
-};
+}
+
+export interface ProjectsPageTypes {
+	title: string;
+	subtitle: string;
+}
 
 export interface Project {
 	id?: string;

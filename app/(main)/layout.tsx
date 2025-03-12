@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@/components/theme-provider';
-import { DockDemo } from '@/components/ui/custom-dock';
+import { CustomDock } from '@/components/ui/custom-dock';
 import { geistMono, geistSans } from '@/fonts';
 import type { Metadata } from 'next';
 import '../globals.css';
@@ -31,7 +31,7 @@ export default function RootLayout({
 							{children}
 						</div>
 					</div>
-					<DockDemo />
+					<CustomDock />
 				</ThemeProvider>
 			</body>
 		</html>

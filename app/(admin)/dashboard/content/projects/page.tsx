@@ -1,10 +1,10 @@
-import { getProjectsData } from '@/actions';
+import { getAllProjects } from '@/actions';
 import { Container } from '@/components/container';
 import { columns } from '@/components/projects-table/columns';
 import { DataTable } from '@/components/projects-table/data-table';
 
 const ContentProjectsPage = async () => {
-	const data = await getProjectsData();
+	const data = await getAllProjects();
 	return (
 		<Container variant='dashboard'>
 			<DataTable columns={columns} data={data} />

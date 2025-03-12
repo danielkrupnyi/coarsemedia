@@ -1,10 +1,14 @@
 'use client';
 
+import { updateBlogPageSettings } from '@/actions/dashboard';
+import { BlogPageSettings } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import {
 	Form,
 	FormControl,
@@ -13,28 +17,57 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from './ui/form';
-import { Input } from './ui/input';
-import { Switch } from './ui/switch';
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Switch } from '../ui/switch';
 
-export const BlogPageForm = () => {
+interface BlogPageFormProps {
+	pageData: BlogPageSettings;
+}
+
+export const BlogPageForm: FC<BlogPageFormProps> = ({ pageData }) => {
 	const FormSchema = z.object({
-		display: z.boolean().default(false).optional(),
+		display: z.boolean().default(false),
 		title: z.string().min(5),
 		subtitle: z.string().min(5),
 	});
+
+	console.log(zodResolver(FormSchema));
+
+	const router = useRouter();
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			display: true,
 			title: '',
+			subtitle: '',
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
-		toast('Event has been created.');
-	}
+	useEffect(() => {
+		if (pageData) {
+			const { title, subtitle, display } = pageData;
+
+			form.reset({
+				title,
+				subtitle,
+				display,
+			});
+		}
+	}, [pageData, form]);
+
+	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+		try {
+			await updateBlogPageSettings(data);
+			toast.success('Blog page settings updated successfully');
+
+			router.push('/dashboard');
+			router.refresh();
+		} catch (error) {
+			toast.error('Failed to update blog page settings');
+		}
+	};
 
 	return (
 		<Form {...form}>
@@ -60,6 +93,7 @@ export const BlogPageForm = () => {
 										<Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
+											className='cursor-pointer'
 										/>
 									</FormControl>
 								</FormItem>
@@ -107,7 +141,11 @@ export const BlogPageForm = () => {
 						/>
 					</div>
 				</div>
-				<Button type='submit'>Save</Button>
+				<div className='flex justify-between'>
+					<Button type='submit' className='cursor-pointer'>
+						Save Settings
+					</Button>
+				</div>
 			</form>
 		</Form>
 	);

@@ -11,9 +11,7 @@ export const projectFormSchema = z.object({
 		message: 'Username must be at least 3 characters.',
 	}),
 	website: z.string().url().optional().or(z.literal('')),
-	websiteHidden: z.boolean(),
 	github: z.string().url().optional().or(z.literal('')),
-	githubHidden: z.boolean(),
 });
 
 export type ProjectFormValues = z.infer<typeof projectFormSchema>;
