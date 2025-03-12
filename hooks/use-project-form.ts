@@ -46,6 +46,7 @@ export const useProjectForm = ({
 
 	const handleSubmit = async (values: ProjectFormValues) => {
 		try {
+			console.log('');
 			const formData = new FormData();
 			Object.entries(values).forEach(([key, value]) => {
 				formData.append(key, value);

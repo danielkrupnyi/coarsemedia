@@ -247,10 +247,9 @@ export const createProject = async (formData: FormData) => {
 
 		const result = await pool.query<Project>(
 			`INSERT INTO projects (
-        user_id, title, description, slug, stack, 
-        status, github_url, website_url
+        user_id, title, description, slug, stack, github_url, website_url
       ) VALUES (
-        $1, $2, $3, $4, $5, $6, $7, $8
+        $1, $2, $3, $4, $5, $6, $7
       ) RETURNING *`,
 			[
 				values.user_id,
@@ -258,7 +257,6 @@ export const createProject = async (formData: FormData) => {
 				values.description,
 				values.slug,
 				values.stack,
-				values.status,
 				values.github_url,
 				values.website_url,
 			]
