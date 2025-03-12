@@ -33,8 +33,6 @@ export const BlogPageForm: FC<BlogPageFormProps> = ({ pageData }) => {
 		devto: z.string().url(),
 	});
 
-	console.log(zodResolver(FormSchema));
-
 	const router = useRouter();
 
 	const form = useForm<z.infer<typeof FormSchema>>({

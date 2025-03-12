@@ -9,8 +9,6 @@ const BlogPage = async () => {
 	const pageData = await getBlogPageData();
 	const posts = await getPosts();
 
-	console.log(posts);
-
 	return (
 		<Container variant='secondary'>
 			<div className='py-8 space-y-8'>
