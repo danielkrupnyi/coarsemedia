@@ -75,7 +75,7 @@ export const CustomDock = () => {
 		<TooltipProvider>
 			<Dock
 				direction='middle'
-				className='fixed bottom-3 left-[50%] -translate-x-[50%] z-'
+				className='fixed bottom-3 left-[50%] -translate-x-[50%] z-[90]'
 			>
 				{DATA.navbar.map(item => (
 					<DockIcon

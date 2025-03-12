@@ -1,11 +1,15 @@
 import { getBlogPageData, getPosts } from '@/actions';
 import { Container } from '@/components/container';
 import { PostsGrid } from '@/components/posts-grid';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 const BlogPage = async () => {
 	const pageData = await getBlogPageData();
 	const posts = await getPosts();
+
+	console.log(posts);
 
 	return (
 		<Container variant='secondary'>
@@ -17,11 +21,11 @@ const BlogPage = async () => {
 				<PostsGrid posts={posts} />
 				<Separator />
 				<div className='flex justify-center'>
-					{/* <Button variant='link' asChild>
+					<Button variant='secondary' asChild>
 						<Link href={posts[0].source} target='_blank'>
 							Watch More
 						</Link>
-					</Button> */}
+					</Button>
 				</div>
 			</div>
 		</Container>
