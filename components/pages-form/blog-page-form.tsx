@@ -30,6 +30,7 @@ export const BlogPageForm: FC<BlogPageFormProps> = ({ pageData }) => {
 		display: z.boolean().default(false),
 		title: z.string().min(5),
 		subtitle: z.string().min(5),
+		devto: z.string().url(),
 	});
 
 	console.log(zodResolver(FormSchema));

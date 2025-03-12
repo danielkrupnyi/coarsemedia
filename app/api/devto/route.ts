@@ -9,6 +9,9 @@ interface DevToArticle {
 	tag_list: string[];
 	reading_time_minutes: number;
 	cover_image: string | null;
+	user: {
+		username: string;
+	};
 }
 
 export async function GET() {
@@ -28,7 +31,7 @@ export async function GET() {
 				'api-key': apiKey,
 				'Content-Type': 'application/json',
 			},
-			next: { revalidate: 3600 }, // Cache for 1 hour
+			next: { revalidate: 3600 },
 		});
 
 		if (!res.ok) {
@@ -39,10 +42,11 @@ export async function GET() {
 		}
 
 		const articles: DevToArticle[] = await res.json();
+		const sourcePath = articles[0].url.slice(
+			0,
+			articles[0].url.indexOf(articles[0].user.username)
+		);
 
-		console.log(articles);
-
-		// Format and filter the response data
 		const formattedArticles = articles.map(article => ({
 			id: article.id,
 			title: article.title,
@@ -52,6 +56,7 @@ export async function GET() {
 			tag_list: article.tag_list,
 			reading_time_minutes: article.reading_time_minutes,
 			cover_image: article.cover_image,
+			source: `${sourcePath}${article.user.username}`,
 		}));
 
 		return NextResponse.json(formattedArticles, {

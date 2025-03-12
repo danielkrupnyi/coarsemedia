@@ -8,6 +8,7 @@ export type Post = {
 	tag_list: string[];
 	body_markdown: string;
 	cover_image: string;
+	source: string;
 };
 
 export interface BlogPageSettings extends BlogPageTypes {
@@ -36,7 +37,6 @@ export interface Project {
 	title: string;
 	description: string;
 	stack: string[] | [];
-	status: 'draft' | 'published';
 	website_url?: string;
 	github_url?: string;
 	github_hidden: boolean;

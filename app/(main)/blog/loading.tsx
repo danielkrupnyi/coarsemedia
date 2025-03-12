@@ -1,4 +1,5 @@
 import { Container } from '@/components/container';
+import { MasonryGrid } from '@/components/masonry-grid';
 import {
 	Card,
 	CardContent,
@@ -9,16 +10,19 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Loading() {
 	return (
-		<Container>
+		<Container variant='secondary'>
 			<div className='py-8 space-y-8'>
 				<div className='space-y-2'>
 					<Skeleton className='h-9 w-48' />
 					<Skeleton className='h-5 w-96' />
 				</div>
 
-				<div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+				<MasonryGrid>
 					{Array.from({ length: 6 }).map((_, i) => (
-						<Card key={i} className='flex flex-col pt-0'>
+						<Card
+							key={i}
+							className='flex flex-col pt-0 break-inside-avoid mb-4'
+						>
 							<div className='relative aspect-video'>
 								<Skeleton className='absolute inset-0 rounded-t-lg' />
 							</div>
@@ -40,7 +44,7 @@ export default function Loading() {
 							</CardFooter>
 						</Card>
 					))}
-				</div>
+				</MasonryGrid>
 			</div>
 		</Container>
 	);

@@ -1,12 +1,12 @@
-import { Ripple } from '@/components/magicui/ripple';
+import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
 
 export default function Loading() {
 	return (
-		<div className='relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background'>
-			<p className='z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-white'>
-				Loading
-			</p>
-			<Ripple />
-		</div>
+		<AnimatedGridPattern
+			numSquares={30}
+			maxOpacity={0.1}
+			duration={3}
+			repeatDelay={1}
+		/>
 	);
 }

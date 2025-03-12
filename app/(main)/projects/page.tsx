@@ -7,7 +7,7 @@ const ProjectsPage = async () => {
 	const projects = await getProjects();
 
 	return (
-		<Container>
+		<Container variant='secondary'>
 			<div className='py-8 space-y-8'>
 				<div className='space-y-2'>
 					<h1 className='text-3xl font-bold'>{pageData?.title}</h1>

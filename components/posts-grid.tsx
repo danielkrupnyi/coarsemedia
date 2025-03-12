@@ -1,5 +1,9 @@
+'use client';
+
+import { fadeInUp } from '@/animations';
 import { ImgPlaceholder } from '@/lib/utils';
 import { Post } from '@/types';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FC } from 'react';
 import { MasonryGrid } from './masonry-grid';
@@ -12,13 +16,16 @@ import {
 	CardTitle,
 } from './ui/card';
 
+const MotionCard = motion.create(Card);
+
 export const PostsGrid: FC<{ posts: Post[] }> = ({ posts }) => {
 	const { toBase64, shimmer } = ImgPlaceholder;
 
 	return (
-		<MasonryGrid>
+		<MasonryGrid animate={true}>
 			{posts.map(post => (
-				<Card
+				<MotionCard
+					variants={fadeInUp}
 					className='flex flex-col pt-0 break-inside-avoid mb-4'
 					key={post.id}
 				>
@@ -61,7 +68,7 @@ export const PostsGrid: FC<{ posts: Post[] }> = ({ posts }) => {
 							))}
 						</div>
 					</CardContent>
-				</Card>
+				</MotionCard>
 			))}
 		</MasonryGrid>
 	);

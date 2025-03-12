@@ -26,8 +26,8 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<div className='relative w-screen h-screen z-0 p-1'>
-						<div className='relative w-full h-full overflow-auto rounded-lg border bg-background'>
+					<div className='relative w-screen h-screen p-1'>
+						<div className='relative w-full h-full overflow-auto rounded-lg border'>
 							{children}
 						</div>
 					</div>
