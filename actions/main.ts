@@ -105,7 +105,7 @@ export const getBlogPageData = async (): Promise<BlogPageTypes | null> => {
 			throw new Error('Blog page data not found');
 		}
 
-		return result.rows[0];
+		return result.rows[0] ?? null;
 	} catch (error) {
 		console.error('Feiled to fetch blog page data:', error);
 		return null;

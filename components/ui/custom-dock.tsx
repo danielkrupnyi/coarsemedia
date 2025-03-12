@@ -2,8 +2,9 @@
 
 import { HomeIcon, MailIcon, PencilIcon, Terminal } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { getBlogPageDisplayStatus } from '@/actions/main';
 import { Dock, DockIcon } from '@/components/magicui/dock';
 import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -57,24 +58,24 @@ const DATA = {
 export const CustomDock = () => {
 	const [blogDisplay, setBlogDisplay] = useState(false);
 
-	// useEffect(() => {
-	// 	const fetchBlogStatus = async () => {
-	// 		try {
-	// 			const status = await getBlogPageDisplayStatus();
-	// 			setBlogDisplay(status.display);
-	// 		} catch (error) {
-	// 			console.error('Failed to fetch blog display status:', error);
-	// 		}
-	// 	};
+	useEffect(() => {
+		const fetchBlogStatus = async () => {
+			try {
+				const status = await getBlogPageDisplayStatus();
+				setBlogDisplay(status.display);
+			} catch (error) {
+				console.error('Failed to fetch blog display status:', error);
+			}
+		};
 
-	// 	fetchBlogStatus();
-	// }, []);
+		fetchBlogStatus();
+	}, []);
 
 	return (
 		<TooltipProvider>
 			<Dock
 				direction='middle'
-				className='fixed bottom-3 left-[50%] -translate-x-[50%] z-50'
+				className='fixed bottom-3 left-[50%] -translate-x-[50%] z-'
 			>
 				{DATA.navbar.map(item => (
 					<DockIcon
