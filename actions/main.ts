@@ -98,7 +98,7 @@ export const getBlogPageData = async (): Promise<BlogPageTypes | null> => {
 
 	try {
 		const result = await pool.query<BlogPageTypes>(
-			`SELECT title, subtitle FROM blog_page_settings`
+			`SELECT display, title, subtitle FROM blog_page_settings`
 		);
 
 		if (result.rows.length === 0) {
