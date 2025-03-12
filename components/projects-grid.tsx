@@ -26,9 +26,10 @@ interface ProjectsGridProps {
 
 export const ProjectsGrid: FC<ProjectsGridProps> = ({ projects }) => {
 	return (
-		<MasonryGrid animate={true} className='mb-16'>
-			{projects
-				? projects.map(project => (
+		<>
+			{projects && (
+				<MasonryGrid animate={true} className='mb-16'>
+					{projects.map(project => (
 						<MotionCard
 							key={project.id}
 							variants={fadeInUp}
@@ -65,8 +66,9 @@ export const ProjectsGrid: FC<ProjectsGridProps> = ({ projects }) => {
 									))}
 							</CardFooter>
 						</MotionCard>
-				  ))
-				: ''}
-		</MasonryGrid>
+					))}
+				</MasonryGrid>
+			)}
+		</>
 	);
 };

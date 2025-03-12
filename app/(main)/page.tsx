@@ -1,9 +1,12 @@
+import { getHomePageData } from '@/actions';
 import { Container } from '@/components/container';
 import { AnimatedGridPattern } from '@/components/magicui/animated-grid-pattern';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import Logo from '@/components/ui/logo';
 
-export default function Home() {
+const HomePage = async () => {
+	const pageData = await getHomePageData();
+
 	return (
 		<>
 			<AnimatedGridPattern
@@ -22,7 +25,7 @@ export default function Home() {
 							once
 							className='text-4xl font-bold mb-8'
 						>
-							Hello, Im&apos;Daniel 👋
+							{pageData?.title || ''}
 						</TextAnimate>
 						<TextAnimate
 							animation='blurInUp'
@@ -31,7 +34,7 @@ export default function Home() {
 							once
 							className='text-xl max-w-[450px]'
 						>
-							A web developer who likes to build websites, mostly using Next.js.
+							{pageData?.subtitle || ''}
 						</TextAnimate>
 					</div>
 					<Logo />
@@ -39,4 +42,6 @@ export default function Home() {
 			</div>
 		</>
 	);
-}
+};
+
+export default HomePage;

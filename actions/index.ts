@@ -1,8 +1,78 @@
 'use server';
 
 import { auth } from '@/auth';
-import { Post, Project } from '@/types';
+import {
+	BlogPageTypes,
+	HomePageTypes,
+	Post,
+	Project,
+	ProjectsPageTypes,
+} from '@/types';
 import { Pool } from '@neondatabase/serverless';
+
+export const getHomePageData = async (): Promise<HomePageTypes | null> => {
+	const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+	try {
+		const result = await pool.query<HomePageTypes>(
+			`SELECT title, subtitle FROM home_page_settings;`
+		);
+
+		if (result.rows.length === 0) {
+			throw new Error('Home page data not found');
+		}
+
+		return result.rows[0];
+	} catch (error) {
+		console.error('Feiled to fetch home page data:', error);
+		return null;
+	} finally {
+		await pool.end();
+	}
+};
+
+export const getProjectsPageData =
+	async (): Promise<ProjectsPageTypes | null> => {
+		const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+		try {
+			const result = await pool.query<ProjectsPageTypes>(
+				`SELECT title, subtitle FROM projects_page_settings;`
+			);
+
+			if (result.rows.length === 0) {
+				throw new Error('Projects page data not found');
+			}
+
+			return result.rows[0];
+		} catch (error) {
+			console.error('Feiled to fetch projects page data:', error);
+			return null;
+		} finally {
+			await pool.end();
+		}
+	};
+
+export const getBlogPageData = async (): Promise<BlogPageTypes | null> => {
+	const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+	try {
+		const result = await pool.query<BlogPageTypes>(
+			`SELECT title, subtitle FROM blog_page_settings;`
+		);
+
+		if (result.rows.length === 0) {
+			throw new Error('Blog page data not found');
+		}
+
+		return result.rows[0];
+	} catch (error) {
+		console.error('Feiled to fetch blog page data:', error);
+		return null;
+	} finally {
+		await pool.end();
+	}
+};
 
 export const getPosts = async (): Promise<Post[]> => {
 	try {
@@ -50,7 +120,7 @@ export const getProject = async (slug: string) => {
 	const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 	try {
-		const result = await pool.query(
+		const result = await pool.query<Project>(
 			`SELECT * FROM projects WHERE slug = $1 AND user_id = $2`,
 			[slug, session.user.id]
 		);

@@ -10,6 +10,21 @@ export type Post = {
 	cover_image: string;
 };
 
+export type HomePageTypes = {
+	title: string;
+	subtitle: string;
+};
+
+export type BlogPageTypes = {
+	title: string;
+	subtitle: string;
+};
+
+export type ProjectsPageTypes = {
+	title: string;
+	subtitle: string;
+};
+
 export interface Project {
 	id?: string;
 	user_id?: number;

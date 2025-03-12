@@ -1,5 +1,12 @@
+import { BlogPageForm } from '@/components/blog-page-form';
+import { Container } from '@/components/container';
+
 const PagesBlogPage = () => {
-	return <div>PagesBlogPage</div>;
+	return (
+		<Container variant='dashboard' className=''>
+			<BlogPageForm />
+		</Container>
+	);
 };
 
 export default PagesBlogPage;
