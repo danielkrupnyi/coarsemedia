@@ -2,6 +2,8 @@ import { getProjects, getProjectsPageData } from '@/actions';
 import { Container } from '@/components/container';
 import { ProjectsGrid } from '@/components/projects-grid';
 
+export const revalidate = 60;
+
 const ProjectsPage = async () => {
 	const pageData = await getProjectsPageData();
 	const projects = await getProjects();

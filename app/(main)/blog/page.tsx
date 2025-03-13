@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 
+export const revalidate = 60;
+
 const BlogPage = async () => {
 	const pageData = await getBlogPageData();
 	const posts = await getPosts();

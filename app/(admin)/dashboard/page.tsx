@@ -1,7 +1,7 @@
 import { Container } from '@/components/container';
 import { TypingAnimation } from '@/components/magicui/typing-animation';
 
-const DashboardPage = async () => {
+const DashboardPage = () => {
 	return (
 		<Container
 			variant='dashboard'

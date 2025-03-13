@@ -3,6 +3,8 @@ import { Container } from '@/components/container';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import Logo from '@/components/ui/logo';
 
+export const revalidate = 60;
+
 const HomePage = async () => {
 	const pageData = await getHomePageData();
 
