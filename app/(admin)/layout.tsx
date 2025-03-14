@@ -8,6 +8,7 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { geistMono, geistSans } from '@/fonts';
+import { favicons } from '@/lib/utils';
 import { Separator } from '@radix-ui/react-separator';
 import { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -17,6 +18,9 @@ export const metadata: Metadata = {
 	title: 'Daniel Krupnyi - Dashboard',
 	description:
 		'A web developer who likes to build websites, mostly using Next.js.',
+	icons: {
+		icon: favicons,
+	},
 };
 
 export default function DashboardLayout({

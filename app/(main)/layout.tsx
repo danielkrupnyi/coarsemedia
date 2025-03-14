@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { CustomDock } from '@/components/ui/custom-dock';
 import { geistMono, geistSans } from '@/fonts';
+import { favicons } from '@/lib/utils';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -8,6 +9,9 @@ export const metadata: Metadata = {
 	title: 'Daniel Krupnyi - Web Developer',
 	description:
 		'A web developer who likes to build websites, mostly using Next.js.',
+	icons: {
+		icon: favicons,
+	},
 };
 
 export default function RootLayout({

@@ -1,8 +1,15 @@
 import { getProjects, getProjectsPageData } from '@/actions';
 import { Container } from '@/components/container';
 import { ProjectsGrid } from '@/components/projects-grid';
+import { Metadata } from 'next';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+	title: 'Projects - Daniel Krupnyi',
+	description:
+		'Discover my portfolio of web development projects. From full-stack applications to responsive websites, built with Next.js, React, and modern technologies.',
+};
 
 const ProjectsPage = async () => {
 	const pageData = await getProjectsPageData();

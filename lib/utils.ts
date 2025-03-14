@@ -76,3 +76,16 @@ const makeImgPlaceholder = () => {
 };
 
 makeImgPlaceholder();
+
+export const favicons = [
+	{
+		media: '(prefers-color-scheme: dark)',
+		url: '/images/favicon-dark.png',
+		href: '/images/favicon-dark.png',
+	},
+	{
+		media: '(prefers-color-scheme: light)',
+		url: '/images/favicon-light.png',
+		href: '/images/favicon-light.png',
+	},
+];

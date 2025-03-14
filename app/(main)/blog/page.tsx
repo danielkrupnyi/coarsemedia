@@ -3,9 +3,16 @@ import { Container } from '@/components/container';
 import { PostsGrid } from '@/components/posts-grid';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+	title: 'Blog - Daniel Krupnyi',
+	description:
+		'Explore my thoughts, insights, and experiences in web development, focusing on Next.js, React, and modern web technologies.',
+};
 
 const BlogPage = async () => {
 	const pageData = await getBlogPageData();
